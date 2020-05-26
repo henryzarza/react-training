@@ -1,26 +1,22 @@
-$black: #282C34;
-$white: #FFF;
-$blue: #61DAFB;
-
-.App {
+.app {
   text-align: center;
 }
 
-.App-logo {
+.app-logo {
   height: 40vmin;
   pointer-events: none;
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+  .app-logo {
+    animation: app-logo-spin infinite 20s linear;
   }
 }
 
-.App-header {
+.app-header {
   align-items: center;
-  background-color: $black;
-  color: $white;
+  background-color: var(--black);
+  color: var(--white);
   display: flex;
   flex-direction: column;
   font-size: calc(10px + 2vmin);
@@ -28,11 +24,12 @@ $blue: #61DAFB;
   min-height: 100vh;
 }
 
-.App-link {
-  color: $blue;
+.app-link {
+  color: var(--blue);
+  margin-bottom: 1rem;
 }
 
-@keyframes App-logo-spin {
+@keyframes app-logo-spin {
   from {
     transform: rotate(0deg);
   }
