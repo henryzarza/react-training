@@ -7,8 +7,8 @@ import styles from './styles.module.scss';
 function Home() {
   return (
     <div className={styles.app}>
-      <header className={styles['app-header']}>
-        <img src={logo} className={styles['app-logo']} alt='logo' />
+      <header className={styles.appHeader}>
+        <img src={logo} className={styles.appLogo} alt='logo' />
         <p>
           Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sapiente
           nihil totam, voluptate facilis excepturi corporis magnam, dolores non
@@ -16,7 +16,7 @@ function Home() {
           debitis sequi sunt! Laborum?
         </p>
         <a
-          className={styles['app-link']}
+          className={styles.appLink}
           href='https://reactjs.org'
           target='_blank'
           rel='noopener noreferrer'
