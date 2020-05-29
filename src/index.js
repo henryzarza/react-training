@@ -1,5 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+
+import './config/i18n';
 import './index.scss';
 import Home from './screens/Home';
 import * as serviceWorker from './serviceWorker';
