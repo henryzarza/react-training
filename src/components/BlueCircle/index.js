@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './BlueCircle.module.scss';
+import styles from './styles.module.scss';
 
 function BlueCircle() {
   return <div className={styles.circle} />;
