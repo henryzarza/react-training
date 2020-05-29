@@ -8,12 +8,12 @@ import styles from './styles.module.scss';
 function Home() {
   return (
     <div className={styles.app}>
-      <header className={styles['app-header']}>
-        <img src={logo} className={styles['app-logo']} alt='logo' />
+      <header className={styles.appHeader}>
+        <img src={logo} className={styles.appLogo} alt='logo' />
         <h2>{i18next.t('HOME:HOME_TITLE')}</h2>
         <p>{i18next.t('HOME:HOME_DESCRIPTION')}</p>
         <a
-          className={styles['app-link']}
+          className={styles.appLink}
           href='https://reactjs.org'
           target='_blank'
           rel='noopener noreferrer'
