@@ -9,10 +9,10 @@ function Home() {
     <div className={styles.app}>
       <header className={styles.appHeader}>
         <img src={logo} className={styles.appLogo} alt='logo' />
-        <h2>{i18next.t('HOME:HOME_TITLE')}</h2>
-        <p>{i18next.t('HOME:HOME_DESCRIPTION')}</p>
+        <h2 className='title'>{i18next.t('HOME:HOME_TITLE')}</h2>
+        <p className='base-text'>{i18next.t('HOME:HOME_DESCRIPTION')}</p>
         <a
-          className={styles.appLink}
+          className={`big-text ${styles.appLink}`}
           href='https://reactjs.org'
           target='_blank'
           rel='noopener noreferrer'
