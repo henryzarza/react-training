@@ -3,12 +3,12 @@ import ReactDOM from 'react-dom';
 
 import './config/i18n';
 import './index.scss';
-import Home from './screens/Home';
+import App from './screens';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Home />
+    <App />
   </React.StrictMode>,
   document.getElementById('root')
 );

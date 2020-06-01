@@ -2,7 +2,6 @@ import React from 'react';
 import i18next from 'i18next';
 
 import logo from '@assets/logo.svg';
-import BlueCircle from '@components/BlueCircle';
 import styles from './styles.module.scss';
 
 function Home() {
@@ -20,7 +19,6 @@ function Home() {
         >
           {i18next.t('HOME:BUTTON_TEXT')}
         </a>
-        <BlueCircle />
       </header>
     </div>
   );
