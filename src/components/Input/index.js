@@ -11,6 +11,7 @@ function Input({
   validationSchema,
   errors,
   isDirty,
+  onChange,
 }) {
   return (
     <div className={styles.container}>
@@ -23,6 +24,7 @@ function Input({
           [styles.filled]: isDirty,
         })}
         ref={register(validationSchema)}
+        onChange={onChange}
       />
       <label className='base-text' htmlFor={id}>
         {label}
@@ -60,6 +62,7 @@ Input.propTypes = {
     message: string,
   }),
   isDirty: bool,
+  onChange: func,
 };
 
 Input.defaultProps = {
