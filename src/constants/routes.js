@@ -1,4 +1,4 @@
 export const ROUTES = {
-  LOGIN: 'login',
   HOME: '/',
+  TIME_ZONES: 'time-zones',
 };
