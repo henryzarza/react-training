@@ -15,8 +15,6 @@
 
 .app-header {
   align-items: center;
-  background-color: var(--black);
-  color: var(--white);
   display: flex;
   flex-direction: column;
   font-size: calc(10px + 2vmin);
@@ -25,7 +23,6 @@
 }
 
 .app-link {
-  color: var(--blue);
   margin-bottom: 1rem;
 }
 
