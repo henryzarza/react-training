@@ -1,8 +1,10 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useContext } from 'react';
 import { string, func } from 'prop-types';
 import { useForm } from 'react-hook-form';
 import i18next from 'i18next';
+
 import Input from '@components/Input';
+import { AuthContext } from '@components/ProtectedRoute';
 import { ERROR_MESSAGES } from '@constants/errorMessages';
 import { VALIDATION_SCHEMA } from '../../constants';
 import styles from './styles.module.scss';
@@ -18,8 +20,12 @@ const SignUpForm = ({ className, onChangeView }) => {
     setError,
   } = useForm();
   const { dirtyFields } = formState;
+  const context = useContext(AuthContext);
 
-  const onSubmit = (data) => console.table(data);
+  const onSubmit = (data) => {
+    console.table(data);
+    context.handleSetIsAuth(true);
+  };
 
   const handleChangePasswordRepeat = useCallback(
     (e) => {

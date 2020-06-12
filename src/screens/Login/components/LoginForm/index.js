@@ -1,16 +1,22 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import i18next from 'i18next';
 import { string, func } from 'prop-types';
 import { useForm } from 'react-hook-form';
+
 import Input from '@components/Input';
+import { AuthContext } from '@components/ProtectedRoute';
 import { VALIDATION_SCHEMA } from '../../constants';
 import styles from './styles.module.scss';
 
 const LoginForm = ({ className, onChangeView }) => {
   const { register, handleSubmit, errors, formState } = useForm();
   const { dirtyFields } = formState;
+  const context = useContext(AuthContext);
 
-  const onSubmit = (data) => console.table(data);
+  const onSubmit = (data) => {
+    console.table(data);
+    context.handleSetIsAuth(true);
+  };
 
   return (
     <form className={className} onSubmit={handleSubmit(onSubmit)}>
