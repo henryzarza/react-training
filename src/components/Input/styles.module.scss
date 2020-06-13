@@ -33,10 +33,6 @@
     & + label {
       color: var(--primary-color);
       transform: translateY(-1rem) scale(0.9);
-
-      &::before {
-        transform: scaleX(1);
-      }
     }
   }
 }
