@@ -1,0 +1,55 @@
+$scale: 0.25;
+
+$min-top: 0.25;
+$max-top: 5;
+
+$min-right: 0.25;
+$max-right: 5;
+
+$min-bottom: 0.25;
+$max-bottom: 5;
+
+$min-left: 0.25;
+$max-left: 5;
+
+@mixin assignMargin($min-size, $max-size, $class-name, $property) {
+  @if $min-size > 0 {
+    $unscaled-min: $min-size / $scale;
+    $unscaled-max: $max-size / $scale;
+    $i: 0;
+
+    @for $i from $unscaled-min through $unscaled-max {
+      .m-#{$class-name}-#{$i} {
+        #{$property}: #{$i * $scale}rem;
+      }
+    }
+  }
+}
+
+// Bottom margins
+@include assignMargin($min-bottom, $max-bottom, 'bottom', 'margin-bottom');
+
+// Top margins
+@include assignMargin($min-top, $max-top, 'top', 'margin-top');
+
+// Right margins
+@include assignMargin($min-right, $max-right, 'right', 'margin-right');
+
+// Left margins
+@include assignMargin($min-left, $max-left, 'left', 'margin-left');
+
+.m-top-0 {
+  margin-top: 0;
+}
+
+.m-right-0 {
+  margin-right: 0;
+}
+
+.m-bottom-0 {
+  margin-bottom: 0;
+}
+
+.m-left-0 {
+  margin-left: 0;
+}

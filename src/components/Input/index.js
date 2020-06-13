@@ -15,6 +15,9 @@ function Input({ id, label, type }) {
       <label className='base-text' htmlFor={id}>
         {label}
       </label>
+      {/* <small className={`small-text fw-bold ${styles.error}`}>
+        Error message
+      </small> */}
     </div>
   );
 }

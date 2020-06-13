@@ -15,14 +15,13 @@
 }
 
 .left-content {
+  animation: fadeInUp $transition-duration $transition-function 200ms forwards;
   display: flex;
   flex-direction: column;
   max-width: 25rem;
+  opacity: 0;
+  transform: translate3d(0, 20%, 0);
   width: 100%;
-}
-
-.mb-1 {
-  margin-bottom: 1rem;
 }
 
 .right-container {
@@ -33,6 +32,18 @@
 
 .link {
   align-self: flex-start;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 20%, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
 }
 
 @media only screen and (max-width: $break-point) {
