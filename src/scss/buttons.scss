@@ -1,0 +1,35 @@
+@import './variables';
+
+.button {
+  cursor: pointer;
+  padding: 0.8rem 0.5rem;
+  text-align: center;
+  transition: all $transition-duration $transition-function;
+
+  &.primary {
+    background-color: var(--primary-color);
+    color: var(--btn-primary-color);
+  }
+
+  &:hover,
+  &:focus {
+    box-shadow: 0.15rem 0.15rem 0.3rem var(--shadow-btn);
+    opacity: 0.9;
+  }
+
+  &:active {
+    box-shadow: 0.05rem 0.05rem 0.05rem var(--shadow-btn);
+    transform: scale(0.98);
+  }
+}
+
+.link {
+  color: var(--primary-color);
+  cursor: pointer;
+
+  &:hover,
+  &:focus,
+  &:active {
+    text-decoration: underline;
+  }
+}

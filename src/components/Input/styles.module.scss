@@ -1,0 +1,38 @@
+@import 'src/scss/variables';
+
+.container {
+  margin-bottom: 1rem;
+  position: relative;
+  width: 100%;
+}
+
+.input {
+  background-color: var(--input-bg-color);
+  border-bottom: 0.15rem solid transparent;
+  border-radius: 0.2rem;
+  line-height: 0;
+  padding: 1.2rem 0.6rem 0.8rem;
+  width: 100%;
+
+  + label {
+    left: 0;
+    padding-left: 0.6rem;
+    pointer-events: none;
+    position: absolute;
+    top: 1rem;
+    transform-origin: left 0;
+    transition: transform $transition-duration $transition-function;
+    user-select: none;
+    width: 100%;
+  }
+
+  &:focus,
+  &.filled {
+    border-bottom-color: var(--primary-color);
+
+    & + label {
+      color: var(--primary-color);
+      transform: translateY(-1rem) scale(0.9);
+    }
+  }
+}
