@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import i18next from 'i18next';
 import Input from '@components/Input';
 import { ERROR_MESSAGES } from '@constants/errorMessages';
-import { VALIDATION_SCHEMA } from '../../constants';
+import { VALIDATION_SCHEMA, FIELD_NAMES } from '../../constants';
 import styles from './styles.module.scss';
 
 const SignUpForm = ({ className, onChangeView }) => {
@@ -36,46 +36,46 @@ const SignUpForm = ({ className, onChangeView }) => {
       <h2 className='title m-bottom-4'>{i18next.t('LOGIN:TITLE')}</h2>
       <p className='base-text m-bottom-4'>{i18next.t('LOGIN:SUBTITLE')}</p>
       <Input
-        id='name'
+        id={FIELD_NAMES.NAME}
         label={i18next.t('LOGIN:NAME')}
         register={register}
         validationSchema={VALIDATION_SCHEMA.NAME}
         errors={errors.name}
-        isDirty={dirtyFields.has('name')}
+        isDirty={dirtyFields.has(FIELD_NAMES.NAME)}
       />
       <Input
-        id='username'
+        id={FIELD_NAMES.USER_NAME}
         label={i18next.t('LOGIN:USER_NAME')}
         register={register}
         validationSchema={VALIDATION_SCHEMA.USER_NAME}
         errors={errors.username}
-        isDirty={dirtyFields.has('username')}
+        isDirty={dirtyFields.has(FIELD_NAMES.USER_NAME)}
       />
       <Input
-        id='email'
+        id={FIELD_NAMES.EMAIL}
         label={i18next.t('LOGIN:EMAIL')}
         register={register}
         validationSchema={VALIDATION_SCHEMA.EMAIL}
         errors={errors.email}
-        isDirty={dirtyFields.has('email')}
+        isDirty={dirtyFields.has(FIELD_NAMES.EMAIL)}
       />
       <Input
-        id='password'
+        id={FIELD_NAMES.PASSWORD}
         label={i18next.t('LOGIN:PASSWORD')}
         type='password'
         register={register}
         validationSchema={VALIDATION_SCHEMA.PASSWORD}
         errors={errors.password}
-        isDirty={dirtyFields.has('password')}
+        isDirty={dirtyFields.has(FIELD_NAMES.PASSWORD)}
       />
       <Input
-        id='passwordRepeat'
+        id={FIELD_NAMES.PASSWORD_REPEAT}
         label={i18next.t('LOGIN:PASSWORD_REPEAT')}
         type='password'
         register={register}
         validationSchema={VALIDATION_SCHEMA.PASSWORD_REPEAT}
         errors={errors.passwordRepeat}
-        isDirty={dirtyFields.has('passwordRepeat')}
+        isDirty={dirtyFields.has(FIELD_NAMES.PASSWORD_REPEAT)}
         onChange={handleChangePasswordRepeat}
       />
       <button
