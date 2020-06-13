@@ -6,10 +6,10 @@ import logo from '@assets/logo.svg';
 import styles from './styles.module.scss';
 
 function Home() {
-  const context = useContext(AuthContext);
+  const { handleSetIsAuth } = useContext(AuthContext);
 
-  const handleLogout = useCallback(() => context.handleSetIsAuth(false), [
-    context,
+  const handleLogout = useCallback(() => handleSetIsAuth(false), [
+    handleSetIsAuth,
   ]);
 
   return (

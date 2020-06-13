@@ -1,13 +1,13 @@
-import React, { lazy, createContext } from 'react';
+import React, { lazy, createContext, useContext } from 'react';
 
 const Login = lazy(() => import('../../screens/Login'));
 
 export const AuthContext = createContext();
 
-const ProtectedRoute = ({ component: Component, ...rest }) => (
-  <AuthContext.Consumer>
-    {({ isAuth }) => (isAuth ? <Component {...rest} /> : <Login />)}
-  </AuthContext.Consumer>
-);
+const ProtectedRoute = ({ component: Component, ...rest }) => {
+  const { isAuth } = useContext(AuthContext);
+
+  return isAuth ? <Component {...rest} /> : <Login />;
+};
 
 export default ProtectedRoute;

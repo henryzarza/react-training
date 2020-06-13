@@ -1,7 +1,7 @@
 import React, { lazy, Suspense, useState, useCallback } from 'react';
 import { Router } from '@reach/router';
 
-import { ROUTES } from '@constants/routes';
+import { ROUTES, IS_AUTH } from '@constants/routes';
 import Loading from '@components/Loading';
 import ProtectedRoute, { AuthContext } from '@components/ProtectedRoute';
 
@@ -10,16 +10,13 @@ const TimeZones = lazy(() => import('./TimeZones'));
 const NotFound = lazy(() => import('./NotFound'));
 
 function App() {
-  const [isAuth, setIsAuth] = useState(!!localStorage.getItem('isAuth'));
+  const [isAuth, setIsAuth] = useState(!!localStorage.getItem(IS_AUTH));
 
   const handleSetIsAuth = useCallback(
     (value) => {
       setIsAuth(value);
-      if (value) {
-        localStorage.setItem('isAuth', value);
-      } else {
-        localStorage.removeItem('isAuth');
-      }
+      if (value) localStorage.setItem(IS_AUTH, value);
+      else localStorage.removeItem(IS_AUTH);
     },
     [setIsAuth]
   );

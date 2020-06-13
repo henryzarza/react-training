@@ -1,5 +1,13 @@
 import { ERROR_MESSAGES } from '@constants/errorMessages';
 
+export const FIELD_NAMES = {
+  NAME: 'name',
+  EMAIL: 'email',
+  USER_NAME: 'username',
+  PASSWORD: 'password',
+  PASSWORD_REPEAT: 'passwordRepeat',
+};
+
 export const VALIDATION_SCHEMA = {
   EMAIL: {
     required: ERROR_MESSAGES.required,
