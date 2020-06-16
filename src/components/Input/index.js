@@ -1,8 +1,18 @@
 import React from 'react';
-import { string } from 'prop-types';
+import { string, func, shape, bool, number, instanceOf } from 'prop-types';
+import clsx from 'clsx';
 import styles from './styles.module.scss';
 
-function Input({ id, label, type }) {
+function Input({
+  id,
+  label,
+  type,
+  register,
+  validationSchema,
+  errors,
+  isDirty,
+  onChange,
+}) {
   return (
     <div className={styles.container}>
       <input
@@ -10,14 +20,20 @@ function Input({ id, label, type }) {
         id={id}
         name={id}
         autoComplete='off'
-        className={`base-text ${styles.input}`}
+        className={clsx(`base-text ${styles.input}`, {
+          [styles.filled]: isDirty,
+        })}
+        ref={register(validationSchema)}
+        onChange={onChange}
       />
       <label className='base-text' htmlFor={id}>
         {label}
       </label>
-      {/* <small className={`small-text fw-bold ${styles.error}`}>
-        Error message
-      </small> */}
+      {errors && (
+        <small className={`small-text fw-bold ${styles.error}`}>
+          {errors.message}
+        </small>
+      )}
     </div>
   );
 }
@@ -25,11 +41,33 @@ function Input({ id, label, type }) {
 Input.propTypes = {
   id: string.isRequired,
   label: string.isRequired,
+  register: func.isRequired,
   type: string,
+  validationSchema: shape({
+    required: string,
+    maxLength: shape({
+      value: number,
+      message: string,
+    }),
+    minLength: shape({
+      value: number,
+      message: string,
+    }),
+    pattern: shape({
+      value: instanceOf(RegExp),
+      message: string,
+    }),
+  }),
+  errors: shape({
+    message: string,
+  }),
+  isDirty: bool,
+  onChange: func,
 };
 
 Input.defaultProps = {
   type: 'text',
+  validationSchema: {},
 };
 
 export default Input;
