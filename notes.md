@@ -5,6 +5,7 @@
 - If you have a _Component_ how many diffs are there? If you have a _PureComponent_ how many diffs are there? The answers are “just one” and “at least one and sometimes two”, respectively. If a component usually changes when there’s an update, then a _PureComponent_ will be doing two diffs instead of just one (props and state in _shouldComponentUpdate_, and then the normal element diff). Which means it’s going to be slower usually but faster occasionally.
 - This [article](https://spin.atomicobject.com/2018/04/02/redux-rerendering/) about Re-rendering caused by `mapDispatchToProps` of `react-redux` library is very usefull.
 - A higher-order component is a function that takes a component and returns a new component.
+- Forgetting to handle componentDidUpdate properly is a common source of bugs in React applications.
 
 ## Before You Use Context
 
@@ -31,11 +32,13 @@ componentDidCatch(error, errorInfo) {
 ## Hooks
 
 Hooks are functions that let you “hook into” React state and lifecycle features from function components. Hooks don’t work inside classes — they let you use React without classes.
+Hooks embrace JavaScript closures and avoid introducing React-specific APIs where JavaScript already provides a solution.
 
 ### Effect Hook
 
 You’ve likely performed data fetching, subscriptions, or manually changing the DOM from React components before. We call these operations “side effects” (or “effects” for short) because they can affect other components and can’t be done during rendering.
 The Effect Hook, `useEffect`, adds the ability to perform side effects from a function component. It serves the same purpose as `componentDidMount`, `componentDidUpdate`, and `componentWillUnmount` in React classes, but unified into a single API.
+`Effect` cleanup avoids duplication in `componentDidUpdate` and `componentWillUnmount`, brings related code closer together, and helps us avoid bugs.
 
 When you call `useEffect`, you’re telling React to run your “effect” function after flushing changes to the DOM. Effects are declared inside the component so they have access to its props and state. By default, React runs the effects after every render — including the first render.
 
