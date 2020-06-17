@@ -33,6 +33,7 @@ componentDidCatch(error, errorInfo) {
 
 Hooks are functions that let you “hook into” React state and lifecycle features from function components. Hooks don’t work inside classes — they let you use React without classes.
 Hooks embrace JavaScript closures and avoid introducing React-specific APIs where JavaScript already provides a solution.
+`Don’t call Hooks inside loops, conditions, or nested functions.` Instead, always use Hooks at the top level of your React function. By following this rule, you ensure that Hooks are called in the same order each time a component renders.
 
 ### Effect Hook
 
@@ -42,6 +43,43 @@ The Effect Hook, `useEffect`, adds the ability to perform side effects from a fu
 
 When you call `useEffect`, you’re telling React to run your “effect” function after flushing changes to the DOM. Effects are declared inside the component so they have access to its props and state. By default, React runs the effects after every render — including the first render.
 
+### State Hook
+
+React guarantees that `setState` function identity is stable and won’t change on re-renders. This is why it’s safe to omit from the `useEffect` or `useCallback` dependency list.
+
+```
+function Counter({initialCount}) {
+  const [count, setCount] = useState(initialCount);
+  return (
+    <>
+      Count: {count}
+      <button onClick={() => setCount(initialCount)}>Reset</button>
+      <button onClick={() => setCount(prevCount => prevCount - 1)}>-</button>
+      <button onClick={() => setCount(prevCount => prevCount + 1)}>+</button>
+    </>
+  );
+}
+```
+
+The initialState argument is the state used during the initial render. In subsequent renders, it is disregarded. If the initial state is the result of an expensive computation, you may provide a function instead, which will be executed only on the initial render:
+
+```
+const [state, setState] = useState(() => {
+  const initialState = someExpensiveComputation(props);
+  return initialState;
+});
+```
+
+### Context Hook
+
+Don’t forget that the argument to useContext must be the context object itself:
+
+- Correct: `useContext(MyContext)`
+- Incorrect: `useContext(MyContext.Consumer)`
+- Incorrect: `useContext(MyContext.Provider)`
+
+A component calling `useContext` will always re-render when the context value changes. If re-rendering the component is expensive, you can optimize it by using **memoization**.
+
 ### Rules of Hooks
 
 Hooks are JavaScript functions, but they impose two additional rules:
@@ -49,6 +87,34 @@ Hooks are JavaScript functions, but they impose two additional rules:
 - Only call Hooks at the top level. Don’t call Hooks inside loops, conditions, or nested functions.
 - Only call Hooks from React function components. Don’t call Hooks from regular JavaScript functions. (There is just one other valid place to call Hooks — your own custom Hooks).
 
+So how does React know which state corresponds to which useState call? The answer is that **React relies on the order in which Hooks are called**.
+
 ### Custom hooks
 
 Custom Hooks are more of a convention than a feature. If a function’s name starts with ”use” and it calls other Hooks, we say it is a custom Hook. The `useSomething` naming convention is how our linter plugin is able to find bugs in the code using Hooks.
+
+**Do I have to name my custom Hooks starting with “use”?** Please do. This convention is very important. Without it, we wouldn’t be able to automatically check for violations of rules of Hooks because we couldn’t tell if a certain function contains calls to Hooks inside of it.
+
+### Hooks API Reference
+
+- Basic Hooks
+
+  - [useState](https://reactjs.org/docs/hooks-reference.html#usestate)
+  - [useEffect](https://reactjs.org/docs/hooks-reference.html#useeffect)
+  - [useContext](https://reactjs.org/docs/hooks-reference.html#usecontext)
+
+- Additional Hooks
+
+  - [useReducer](https://reactjs.org/docs/hooks-reference.html#usereducer)
+  - [useCallback](https://reactjs.org/docs/hooks-reference.html#usecallback)
+  - [useMemo](https://reactjs.org/docs/hooks-reference.html#usememo)
+  - [useRef](https://reactjs.org/docs/hooks-reference.html#useref)
+  - [useImperativeHandle](https://reactjs.org/docs/hooks-reference.html#useimperativehandle)
+  - [useLayoutEffect](https://reactjs.org/docs/hooks-reference.html#uselayouteffect)
+  - [useDebugValue](https://reactjs.org/docs/hooks-reference.html#usedebugvalue)
+
+### useReducer
+
+`useReducer` is usually preferable to useState when you have complex state logic that involves multiple sub-values or when the next state depends on the previous one.
+
+React guarantees that `dispatch` function identity is stable and won’t change on re-renders. This is why it’s safe to omit from the useEffect or useCallback dependency list.
