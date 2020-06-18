@@ -1,0 +1,75 @@
+@import 'src/scss/variables';
+
+.container {
+  // position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 50vh;
+}
+
+.content {
+  align-items: center;
+  background: {
+    image: url('../../assets/navbar.jpeg');
+    position: center;
+    repeat: no-repeat;
+    size: cover;
+  };
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1rem;
+  position: relative;
+
+  & > * {
+    color: var(--navbar-text-color);
+    z-index: 1;
+  }
+
+  &::before {
+    background-color: rgba(0, 0, 0, 0.2);
+    bottom: 0;
+    content: '';
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+}
+
+.title {
+  text-shadow: 0.1rem 0.1rem 0.2rem var(--shadow-btn);
+}
+
+.paragraph {
+  max-width: 100%;
+  width: 21.5rem;
+}
+
+.navbar {
+  display: flex;
+  position: sticky;
+  top: 0;
+}
+
+.navbar-item {
+  background-color: var(--primary-color);
+  border-bottom: 0.2rem solid transparent;
+  color: var(--navbar-text-color);
+  cursor: pointer;
+  flex: 1;
+  padding: 1.5rem 1rem;
+  transition: all $transition-duration $transition-function;
+
+  &:hover {
+    border-color: var(--secondary-color);
+  }
+
+  &:active,
+  &[data-active='true'] {
+    background-color: var(--secondary-color);
+    color: var(--navbar-text-color);
+    transform: scale(0.98);
+  }
+}
