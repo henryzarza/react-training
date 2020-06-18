@@ -32,8 +32,13 @@ componentDidCatch(error, errorInfo) {
 ## Hooks
 
 Hooks are functions that let you “hook into” React state and lifecycle features from function components. Hooks don’t work inside classes — they let you use React without classes.
+
 Hooks embrace JavaScript closures and avoid introducing React-specific APIs where JavaScript already provides a solution.
 `Don’t call Hooks inside loops, conditions, or nested functions.` Instead, always use Hooks at the top level of your React function. By following this rule, you ensure that Hooks are called in the same order each time a component renders.
+
+The function passed to `useMemo` runs during rendering. Don’t do anything there that you wouldn’t normally do while rendering. For example, side effects belong in `useEffect`, not `useMemo`.
+
+Keep in mind that `useRef` doesn’t notify you when its content changes. Mutating the `.current` property doesn’t cause a re-render. If you want to run some code when React attaches or detaches a ref to a DOM node, you may want to use `a callback ref` instead.
 
 ### Effect Hook
 
