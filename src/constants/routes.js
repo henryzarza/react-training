@@ -9,14 +9,14 @@ export const IS_AUTH = 'isAuth';
 export const NAVBAR_ROUTES = [
   {
     route: ROUTES.HOME,
-    text: 'Home',
+    text: 'NAVBAR:HOME',
   },
   {
     route: ROUTES.TIME_ZONES,
-    text: 'Time zones',
+    text: 'NAVBAR:TIME_ZONES',
   },
   {
     route: ROUTES.INTERESTING,
-    text: 'Interesting',
+    text: 'NAVBAR:INTERESTING',
   },
 ];

@@ -1,12 +1,5 @@
 @import 'src/scss/variables';
 
-.container {
-  // position: relative;
-  display: flex;
-  flex-direction: column;
-  min-height: 50vh;
-}
-
 .content {
   align-items: center;
   background: {
@@ -19,6 +12,7 @@
   flex: 1;
   flex-direction: column;
   justify-content: center;
+  min-height: 40vh;
   padding: 1rem;
   position: relative;
 
@@ -51,19 +45,32 @@
   display: flex;
   position: sticky;
   top: 0;
+  z-index: 1;
 }
 
 .navbar-item {
   background-color: var(--primary-color);
-  border-bottom: 0.2rem solid transparent;
   color: var(--navbar-text-color);
   cursor: pointer;
   flex: 1;
   padding: 1.5rem 1rem;
+  position: relative;
   transition: all $transition-duration $transition-function;
 
-  &:hover {
-    border-color: var(--secondary-color);
+  &::before {
+    background-color: var(--secondary-color);
+    bottom: 0;
+    content: '';
+    height: 0.4rem;
+    left: 0;
+    position: absolute;
+    right: 0;
+    transform: scaleX(0);
+    transition: transform $quick-transition-duration $transition-function;
+  }
+
+  &:hover::before {
+    transform: scaleX(1);
   }
 
   &:active,
@@ -71,5 +78,15 @@
     background-color: var(--secondary-color);
     color: var(--navbar-text-color);
     transform: scale(0.98);
+  }
+}
+
+@media only screen and (max-width: $break-point) {
+  .navbar-item {
+    min-width: 25%;
+    overflow: hidden;
+    padding: 0.8rem 0.2rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 }
