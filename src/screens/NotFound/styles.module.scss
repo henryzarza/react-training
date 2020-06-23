@@ -1,0 +1,26 @@
+@import 'src/scss/variables';
+
+.img404 {
+  background: {
+    image: url('../../assets/404.jpeg');
+    position: center;
+    repeat: no-repeat;
+    size: cover;
+  };
+  background-clip: text;
+  color: transparent;
+  font-size: 15rem;
+  line-height: 0.9;
+}
+
+.container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.text-shadow {
+  text-shadow: 0.1rem 0.1rem 0.2rem var(--shadow-btn);
+}
