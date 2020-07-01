@@ -10,22 +10,22 @@
   display: none;
 
   & + label {
-    background-color: var(--card-bg-color);
-    border: 0.05rem solid var(--text-color);
+    background-color: var(--primary-color);
     border-radius: 0.3rem;
+    color: var(--navbar-text-color);
     cursor: pointer;
     padding: 0.35rem 0.9rem;
     transform: scale(1);
     transition: all $quick-transition-duration $transition-function;
 
     &:hover {
-      opacity: 0.8;
-      transform: scale(0.9);
+      background-color: var(--secondary-color);
+      transform: scale(0.95);
     }
   }
 
   &:checked + label {
-    opacity: 0.8;
-    transform: scale(0.9);
+    background-color: var(--secondary-color);
+    transform: scale(0.95);
   }
 }
