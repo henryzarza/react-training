@@ -7,11 +7,9 @@ import styles from './styles.module.scss';
 function Card({ data }) {
   return (
     <li className={styles.container}>
-      <img
-        className={`m-bottom-3 ${styles.img}`}
-        src={data.flag.svgFile}
-        alt={data.name}
-      />
+      <div className={`m-bottom-3 ${styles.imgContainer}`}>
+        <img className={styles.img} src={data.flag.svgFile} alt={data.name} />
+      </div>
       <h3 className='big-text fw-bold m-bottom-3'>
         {data.name}
         <span className='big-text fw-thin m-left-1'>({data.nativeName})</span>

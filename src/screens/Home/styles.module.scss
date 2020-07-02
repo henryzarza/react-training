@@ -14,3 +14,9 @@
   grid-gap: 1rem;
   grid-template-columns: repeat(3, 1fr);
 }
+
+@media only screen and (max-width: $break-point) {
+  .content {
+    grid-template-columns: 1fr;
+  }
+}
