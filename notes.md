@@ -7,6 +7,9 @@
 - When that’s not the case, you can add a new ID property to your model or hash some parts of the content to generate a key. The key only has to be unique among its siblings, not globally unique.
 - A `higher-order` component is a function that takes a component and returns a new component.
 - If your React component’s render() function renders the same result given the same props and state, you can use `React.PureComponent` for a performance boost in some cases.
+- `render()` will not be invoked if `shouldComponentUpdate()` returns false.
+- It does not recommend doing deep equality checks or using _JSON.stringify()_ in `shouldComponentUpdate()`. It is very inefficient and will harm performance.
+- Only use error boundaries for recovering from unexpected exceptions; **don’t try to use them for control flow**.
 - With `React.PureComponent’s` `shouldComponentUpdate()` only shallowly compares the objects. If these contain complex data structures, it may produce false-negatives for deeper differences. Only extend PureComponent when you expect to have simple props and state, or use `forceUpdate()` when you know deep data structures have changed. Or, consider using immutable objects to facilitate fast comparisons of nested data.
 - Forgetting to handle `componentDidUpdate` properly is a common source of bugs in React applications.
 - `Props Default to “True”`: If you pass no value for a prop, it defaults to true. These two JSX expressions are equivalent:
