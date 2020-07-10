@@ -22,53 +22,29 @@ export const MOCK_CURRENCY_DATA = [
     name: 'Afghan afghani',
     code: 'AFN',
     symbol: '؋',
-    countries: [
-      {
-        name: 'Afghanistan',
-        flag: {
-          emoji: '🇦🇫',
-        },
-      },
-    ],
   },
   {
     _id: '49',
     name: 'Euro',
     code: 'EUR',
     symbol: '€',
-    countries: [
-      {
-        name: 'Zimbabwe',
-        flag: {
-          emoji: '🇿🇼',
-        },
-      },
-      {
-        name: 'Spain',
-        flag: {
-          emoji: '🇪🇸',
-        },
-      },
-      {
-        name: 'Slovenia',
-        flag: {
-          emoji: '🇸🇮',
-        },
-      },
-    ],
   },
   {
     _id: '72',
     name: 'Albanian lek',
     code: 'ALL',
     symbol: 'L',
-    countries: [
-      {
-        name: 'Albania',
-        flag: {
-          emoji: '🇦🇱',
-        },
-      },
-    ],
+  },
+  {
+    _id: '94',
+    name: 'Algerian dinar',
+    code: 'DZD',
+    symbol: 'د.ج',
+  },
+  {
+    _id: '128',
+    name: 'United State Dollar',
+    code: 'USD',
+    symbol: '$',
   },
 ];

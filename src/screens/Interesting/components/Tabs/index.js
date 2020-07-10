@@ -12,7 +12,7 @@ function Tabs({ value, onSelected }) {
   ]);
 
   return (
-    <ul className={`m-bottom-3 ${styles.container}`}>
+    <ul className={`m-bottom-8 ${styles.container}`}>
       {TABS_CONFIG.map((el) => (
         <li key={el.id} className={styles.item}>
           <button
