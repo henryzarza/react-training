@@ -1,0 +1,96 @@
+@import 'src/scss/variables';
+
+%border {
+  background: var(--currency-color-1);
+  border: {
+    bottom-color: var(--currency-color-2);
+    left-color: var(--currency-color-3);
+    right-color: var(--currency-color-2);
+    style: solid;
+    top-color: var(--currency-color-3);
+    width: 0.3rem;
+  };
+  border-radius: 50%;
+  content: '';
+  height: 100%;
+  left: -0.3rem;
+  position: absolute;
+  top: -0.3rem;
+  transform: rotate(45deg);
+  width: 100%;
+  z-index: -1;
+}
+
+.currency {
+  background-color: var(--currency-color-4);
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  height: 10rem;
+  margin: 0 auto;
+  max-width: 100%;
+  position: relative;
+  transition: transform $quick-transition-duration $transition-function;
+  user-select: none;
+  width: 10rem;
+
+  &:hover {
+    transform: scale(0.95);
+  }
+
+  &::after {
+    @extend %border;
+
+    border: {
+      bottom-color: var(--currency-color-3);
+      left-color: var(--currency-color-2);
+      right-color: var(--currency-color-3);
+      top-color: var(--currency-color-2);
+    }
+  }
+}
+
+.symbol {
+  align-items: center;
+  background-color: var(--currency-color-1);
+  border-radius: 50%;
+  color: var(--currency-color-4);
+  display: flex;
+  height: 5rem;
+  justify-content: center;
+  left: 0;
+  margin: 0 auto;
+  position: absolute;
+  right: 0;
+  text-shadow: 0 0.2rem 0 var(--currency-color-3);
+  top: 0;
+  transform: translateY(50%);
+  width: 5rem;
+
+  &::after {
+    @extend %border;
+  }
+}
+
+.code,
+.name {
+  color: var(--currency-color-3);
+  left: 0;
+  overflow: hidden;
+  position: absolute;
+  right: 0;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.code {
+  top: 0.6rem;
+}
+
+.name {
+  bottom: 0.6rem;
+  margin: 0 auto;
+  width: 70%;
+}
