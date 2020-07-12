@@ -16,6 +16,8 @@ export const TABS_CONFIG = [
   },
 ];
 
+export const CURRENCY_SELECTED_DIFFERENCE = 50;
+
 export const MOCK_CURRENCY_DATA = [
   {
     _id: '25',
