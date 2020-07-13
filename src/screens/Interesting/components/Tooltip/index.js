@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-// import { string, shape } from 'prop-types';
 import clsx from 'clsx';
 import i18next from 'i18next';
 
@@ -10,7 +9,6 @@ function Tooltip({ coordinates }) {
   const contentRef = useRef(null);
 
   useEffect(() => {
-    console.log('coordinates', coordinates);
     if (coordinates) {
       setIsVisible(true);
       contentRef.current.style.transform = `translate(${coordinates.x}, ${coordinates.y})`;
@@ -28,10 +26,7 @@ function Tooltip({ coordinates }) {
       onClick={handleClick}
     >
       <div className={styles.innerContent}>
-        <h3 className='big-text m-bottom-2 fw-bold'>
-          {/* {data.name}({data.symbol}) */}
-          Euro (€)
-        </h3>
+        <h3 className='big-text m-bottom-2 fw-bold'>Euro (€)</h3>
         <h6 className='base-text m-bottom-2'>
           {i18next.t('INTERESTING:CURRENCY_COUNTRIES')}
         </h6>
@@ -71,14 +66,5 @@ function Tooltip({ coordinates }) {
     </div>
   );
 }
-
-/* Tooltip.propTypes = {
-  data: shape({
-    _id: string,
-    name: string,
-    code: string,
-    symbol: string,
-  }).isRequired,
-}; */
 
 export default Tooltip;

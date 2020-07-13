@@ -1,7 +1,6 @@
 @import 'src/scss/variables';
 
 .content {
-  border: 1px solid red;
   cursor: pointer;
   left: 0;
   max-width: 15rem;
@@ -15,25 +14,25 @@
 
   &::after {
     background-color: var(--primary-color);
-    bottom: 0;
     content: '';
     height: 0.8rem;
     left: 0;
     position: absolute;
     right: 0;
+    top: 0;
     transform: scaleX(0);
     transition: transform $quick-transition-duration $transition-function;
   }
 
   &::before {
     background-color: var(--primary-color);
-    bottom: -0.5rem;
     content: '';
     height: 1rem;
     left: 0;
     margin: 0 auto;
     position: absolute;
     right: 0;
+    top: -0.5rem;
     transform: rotate(45deg) scale(0);
     transition: transform $quick-transition-duration $transition-function;
     width: 1rem;
