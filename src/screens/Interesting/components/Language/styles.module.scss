@@ -1,0 +1,31 @@
+@import 'src/scss/variables';
+
+.card {
+  background-color: var(--card-bg-color);
+  border-radius: 0.3rem;
+  box-shadow: $smooth-shadow;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 1rem;
+  width: 100%;
+
+  &:nth-child(even) > .header {
+    background-color: var(--secondary-color);
+  }
+}
+
+.content {
+  padding: 0 1rem;
+}
+
+.header {
+  background-color: var(--primary-color);
+  border-radius: 0.3rem 0.3rem 0 0;
+  color: var(--navbar-text-color);
+  padding: 1rem;
+}
+
+.countries {
+  max-height: 6rem;
+  overflow-y: auto;
+}

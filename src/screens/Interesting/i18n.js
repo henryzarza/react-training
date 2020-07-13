@@ -5,4 +5,5 @@ i18next.addResources('en', 'INTERESTING', {
   TAB_LANGUAGES: 'Languages',
   TAB_DISTANCE: 'Distance',
   CURRENCY_COUNTRIES: 'Countries:',
+  LANGUAGES_COUNTRIES: 'Countries in where is spoken:',
 });
