@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { string, shape, number, arrayOf } from 'prop-types';
+import { string, shape, number, arrayOf, oneOfType, bool } from 'prop-types';
 import { create, color } from '@amcharts/amcharts4/core';
 import {
   MapChart,
@@ -7,11 +7,12 @@ import {
   MapPolygonSeries,
 } from '@amcharts/amcharts4/maps';
 import am4geodata_worldLow from '@amcharts/amcharts4-geodata/worldLow';
+import clsx from 'clsx';
 
 import { THEME_COLORS } from '@constants/colors';
 import styles from './styles.module.scss';
 
-function Map({ data }) {
+function Map({ data, className }) {
   useEffect(() => {
     let map = create('mapRef', MapChart);
 
@@ -40,7 +41,7 @@ function Map({ data }) {
     };
   }, [data]);
 
-  return <div className={styles.container} id='mapRef' />;
+  return <div className={clsx(styles.container, className)} id='mapRef' />;
 }
 
 Map.propTypes = {
@@ -53,6 +54,7 @@ Map.propTypes = {
       emoji: string,
     }).isRequired
   ).isRequired,
+  className: oneOfType([string, bool]),
 };
 
 export default Map;

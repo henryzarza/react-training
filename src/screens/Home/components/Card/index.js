@@ -16,7 +16,7 @@ function Card({ data }) {
       </h3>
       <div className={`m-bottom-3 ${styles.content}`}>
         <h6 className='base-text'>
-          <span className='base-text' role='img' aria-label='Afghanistan'>
+          <span className='base-text' role='img' aria-label={data.name}>
             {data.flag.emoji}
           </span>
           {data.alpha3Code}
