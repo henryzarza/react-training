@@ -9,14 +9,18 @@
   width: $content-width;
 }
 
-.content {
+.card-content {
   display: grid;
   grid-gap: 1rem;
   grid-template-columns: repeat(3, 1fr);
 }
 
+.hide {
+  display: none;
+}
+
 @media only screen and (max-width: $break-point) {
-  .content {
+  .card-content {
     grid-template-columns: 1fr;
   }
 }
