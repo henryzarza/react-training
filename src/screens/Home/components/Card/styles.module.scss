@@ -1,6 +1,36 @@
+@import 'src/scss/variables';
+
 .container {
   background-color: var(--card-bg-color);
   border-radius: 0.3rem;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
   padding: 1rem;
+  transition: box-shadow $transition-duration $transition-function;
   width: 100%;
+
+  &:hover {
+    box-shadow: $smooth-shadow;
+
+    .img {
+      transform: scale(1.1);
+    }
+  }
+}
+
+.img-container {
+  overflow: hidden;
+}
+
+.img {
+  max-height: 13rem;
+  object-fit: cover;
+  transition: transform $transition-duration $transition-function;
+  width: 100%;
+}
+
+.content {
+  display: flex;
+  justify-content: space-between;
 }

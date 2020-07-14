@@ -1,0 +1,30 @@
+@import 'src/scss/variables';
+
+.container {
+  position: relative;
+  width: 100%;
+}
+
+.input {
+  background-color: var(--card-bg-color);
+  border: 0.05rem solid var(--text-color);
+  border-radius: 0.3rem;
+  padding: 1rem 2.5rem 1rem 1rem;
+  transition: border-color $transition-duration $transition-function;
+  width: 100%;
+
+  &:focus {
+    border-color: var(--secondary-color);
+
+    + .icon {
+      color: var(--secondary-color);
+    }
+  }
+}
+
+.icon {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  transition: color $transition-duration $transition-function;
+}
