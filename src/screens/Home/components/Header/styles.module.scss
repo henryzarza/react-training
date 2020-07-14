@@ -1,0 +1,31 @@
+@import 'src/scss/variables';
+
+.header {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.input {
+  display: none;
+
+  & + label {
+    background-color: var(--primary-color);
+    border-radius: 0.3rem;
+    color: var(--navbar-text-color);
+    cursor: pointer;
+    padding: 0.35rem 0.9rem;
+    transform: scale(1);
+    transition: all $quick-transition-duration $transition-function;
+
+    &:hover {
+      background-color: var(--secondary-color);
+      transform: scale(0.95);
+    }
+  }
+
+  &:checked + label {
+    background-color: var(--secondary-color);
+    transform: scale(0.95);
+  }
+}
