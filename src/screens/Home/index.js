@@ -40,13 +40,10 @@ function Home() {
         </ul>
       </div>
       {mapData && (
-        <div
-          className={clsx({
-            [styles.hide]: viewType === VIEW_CONTENT_TYPE[0].id,
-          })}
-        >
-          <Map data={mapData} />
-        </div>
+        <Map
+          data={mapData}
+          className={viewType === VIEW_CONTENT_TYPE[0].id && styles.hide}
+        />
       )}
     </section>
   );
