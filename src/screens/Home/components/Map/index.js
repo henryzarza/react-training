@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { string, shape, arrayOf, oneOfType, bool } from 'prop-types';
+import { string, shape, arrayOf, oneOfType, bool, func } from 'prop-types';
 import { create, color } from '@amcharts/amcharts4/core';
 import {
   MapChart,
@@ -12,10 +12,9 @@ import clsx from 'clsx';
 import { THEME_COLORS } from '@constants/colors';
 import styles from './styles.module.scss';
 
-function Map({ data, className }) {
+function Map({ data, className, onSelected }) {
   useEffect(() => {
     let map = create('mapRef', MapChart);
-
     map.geodata = am4geodata_worldLow;
     map.projection = new projections.Miller();
     let polygonSeries = map.series.push(new MapPolygonSeries());
@@ -25,13 +24,10 @@ function Map({ data, className }) {
     polygonTemplate.fill = color(THEME_COLORS.DEFAULT.primary);
     let hs = polygonTemplate.states.create('hover');
     hs.properties.fill = color(THEME_COLORS.DEFAULT.secondary);
-
-    polygonSeries.exclude = ['AQ'];
     polygonSeries.data = data;
-
     polygonTemplate.events.on('hit', function (e) {
       e.target.series.chart.zoomToMapObject(e.target);
-      console.table(e.target.dataItem.dataContext);
+      onSelected(e.target.dataItem.dataContext.externalId);
     });
 
     return () => {
@@ -39,7 +35,7 @@ function Map({ data, className }) {
         map.dispose();
       }
     };
-  }, [data]);
+  }, [data, onSelected]);
 
   return <div className={clsx(styles.container, className)} id='mapRef' />;
 }
@@ -55,6 +51,7 @@ Map.propTypes = {
     }).isRequired
   ).isRequired,
   className: oneOfType([string, bool]),
+  onSelected: func.isRequired,
 };
 
 export default Map;
