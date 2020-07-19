@@ -33,3 +33,46 @@ export const COUNTRIES_QUERY = gql`
     }
   }
 `;
+
+export const COUNTRY_QUERY = gql`
+  query Country($id: String!) {
+    Country(_id: $id) {
+      name
+      nativeName
+      alpha3Code
+      area
+      population
+      capital
+      demonym
+      numericCode
+      subregion {
+        name
+        region {
+          name
+        }
+      }
+      officialLanguages {
+        iso639_2
+        name
+        nativeName
+      }
+      currencies {
+        name
+        symbol
+      }
+      regionalBlocs {
+        _id
+        name
+        acronym
+      }
+      flag {
+        emoji
+        svgFile
+      }
+      callingCodes {
+        _id
+        name
+      }
+    }
+  }
+`;
