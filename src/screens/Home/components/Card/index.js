@@ -54,7 +54,7 @@ function Card({ data }) {
 
 Card.propTypes = {
   data: shape({
-    _id: number,
+    _id: string,
     name: string,
     nativeName: string,
     alpha3Code: string,

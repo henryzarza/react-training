@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { string, shape, number, arrayOf, oneOfType, bool } from 'prop-types';
+import { string, shape, arrayOf, oneOfType, bool } from 'prop-types';
 import { create, color } from '@amcharts/amcharts4/core';
 import {
   MapChart,
@@ -50,7 +50,7 @@ Map.propTypes = {
       id: string,
       name: string,
       nativeName: string,
-      externalId: number,
+      externalId: string,
       emoji: string,
     }).isRequired
   ).isRequired,
