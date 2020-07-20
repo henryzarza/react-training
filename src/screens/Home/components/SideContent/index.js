@@ -6,6 +6,7 @@ import i18next from 'i18next';
 import Loading from '@components/Loading';
 import { currencyFormat } from '@constants/utils';
 import { COUNTRY_QUERY } from '../../constants';
+import ItemGroup from './components/ItemGroup';
 import styles from './styles.module.scss';
 
 function SideContent({ id }) {
@@ -38,63 +39,48 @@ function SideContent({ id }) {
         {country.nativeName} ({country.alpha3Code})
       </h3>
       <div className={`m-bottom-1 ${styles.innerContent}`}>
-        <div className={`m-bottom-2 m-right-1 ${styles.group}`}>
-          <span className='small-text m-bottom-1'>
-            {i18next.t('HOME:COUNTRY_AREA')}
-          </span>
-          <span className='base-text'>{country.area}</span>
-        </div>
-        <div className={`m-bottom-2 m-right-1 ${styles.group}`}>
-          <span className='small-text m-bottom-1'>
-            {i18next.t('HOME:COUNTRY_POPULATION')}
-          </span>
-          <span className='base-text'>
-            {currencyFormat(country.population)}
-          </span>
-        </div>
-        <div className={`m-bottom-2 ${styles.group}`}>
-          <span className='small-text m-bottom-1'>
-            {i18next.t('HOME:COUNTRY_CAPITAL')}
-          </span>
-          <span className='base-text'>{country.capital}</span>
-        </div>
+        <ItemGroup
+          className={`m-right-1 ${styles.group}`}
+          label={i18next.t('HOME:COUNTRY_AREA')}
+          textContent={country.area}
+        />
+        <ItemGroup
+          className={`m-right-1 ${styles.group}`}
+          label={i18next.t('HOME:COUNTRY_POPULATION')}
+          textContent={currencyFormat(country.population)}
+        />
+        <ItemGroup
+          className={styles.group}
+          label={i18next.t('HOME:COUNTRY_CAPITAL')}
+          textContent={country.capital}
+        />
       </div>
       <div className={`m-bottom-1 ${styles.innerContent}`}>
-        <div className={`m-bottom-2 m-right-1 ${styles.group}`}>
-          <span className='small-text m-bottom-1'>
-            {i18next.t('HOME:COUNTRY_DEMONYM')}
-          </span>
-          <span className='base-text'>{country.demonym}</span>
-        </div>
-        <div className={`m-bottom-2 m-right-1 ${styles.group}`}>
-          <span className='small-text m-bottom-1'>
-            {i18next.t('HOME:COUNTRY_NUMERIC_CODE')}
-          </span>
-          <span className='base-text'>{country.numericCode}</span>
-        </div>
-        <div className={`m-bottom-2 ${styles.group}`}>
-          <span className='small-text m-bottom-1'>
-            {i18next.t('HOME:COUNTRY_CALLING_CODES')}
-          </span>
-          <ul className={`base-text ${styles.list}`}>
-            {country.callingCodes.map((el) => (
-              <li key={el._id}>{el.name}</li>
-            ))}
-          </ul>
-        </div>
+        <ItemGroup
+          className={`m-right-1 ${styles.group}`}
+          label={i18next.t('HOME:COUNTRY_DEMONYM')}
+          textContent={country.demonym}
+        />
+        <ItemGroup
+          className={`m-right-1 ${styles.group}`}
+          label={i18next.t('HOME:COUNTRY_NUMERIC_CODE')}
+          textContent={country.numericCode}
+        />
+        <ItemGroup
+          className={styles.group}
+          label={i18next.t('HOME:COUNTRY_CALLING_CODES')}
+          textContent={country.callingCodes.map((el) => el.name).join(' - ')}
+        />
       </div>
-      <div className={`m-bottom-3 ${styles.group}`}>
-        <span className='small-text m-bottom-1'>
-          {i18next.t('HOME:COUNTRY_SUBREGION')}
-        </span>
-        <span className='base-text'>
-          {country.subregion.name} - {country.subregion.region.name}
-        </span>
-      </div>
-      <div className={`m-bottom-3 ${styles.group}`}>
-        <span className='small-text m-bottom-1'>
-          {i18next.t('HOME:COUNTRY_OFFICIAL_LANGUAGES')}
-        </span>
+      <ItemGroup
+        className={`m-bottom-3 ${styles.group}`}
+        label={i18next.t('HOME:COUNTRY_SUBREGION')}
+        textContent={`${country.subregion.name} - ${country.subregion.region.name}`}
+      />
+      <ItemGroup
+        className={`m-bottom-3 ${styles.group}`}
+        label={i18next.t('HOME:COUNTRY_OFFICIAL_LANGUAGES')}
+      >
         <ul className={`base-text ${styles.list}`}>
           {country.officialLanguages.map((el) => (
             <li key={el.iso639_2}>
@@ -102,11 +88,11 @@ function SideContent({ id }) {
             </li>
           ))}
         </ul>
-      </div>
-      <div className={`m-bottom-3 ${styles.group}`}>
-        <span className='small-text m-bottom-1'>
-          {i18next.t('HOME:COUNTRY_CURRENCIES')}
-        </span>
+      </ItemGroup>
+      <ItemGroup
+        className={`m-bottom-3 ${styles.group}`}
+        label={i18next.t('HOME:COUNTRY_CURRENCIES')}
+      >
         <ul className={`base-text ${styles.list}`}>
           {country.currencies.map((el) => (
             <li key={el.symbol}>
@@ -121,11 +107,11 @@ function SideContent({ id }) {
             </li>
           ))}
         </ul>
-      </div>
-      <div className={`m-bottom-3 ${styles.group}`}>
-        <span className='small-text m-bottom-1'>
-          {i18next.t('HOME:COUNTRY_REGIONAL_BLOCS')}
-        </span>
+      </ItemGroup>
+      <ItemGroup
+        className={`m-bottom-3 ${styles.group}`}
+        label={i18next.t('HOME:COUNTRY_REGIONAL_BLOCS')}
+      >
         <ul className={`base-text ${styles.list}`}>
           {country.regionalBlocs.map((el) => (
             <li key={el._id}>
@@ -133,7 +119,7 @@ function SideContent({ id }) {
             </li>
           ))}
         </ul>
-      </div>
+      </ItemGroup>
     </div>
   );
 }
