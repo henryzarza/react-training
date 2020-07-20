@@ -2,12 +2,13 @@ import React, { useCallback } from 'react';
 import i18next from 'i18next';
 import { func } from 'prop-types';
 
+import { ENTER_KEY_CODE } from '../../constants';
 import styles from './styles.module.scss';
 
 function Searcher({ onChange }) {
   const handleKeyDown = useCallback(
     (e) => {
-      if (e.keyCode === 13) onChange(e.target.value);
+      if (e.keyCode === ENTER_KEY_CODE) onChange(e.target.value);
     },
     [onChange]
   );
