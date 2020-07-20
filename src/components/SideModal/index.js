@@ -2,12 +2,13 @@ import React, { useEffect, useCallback } from 'react';
 import { createPortal } from 'react-dom';
 import { func } from 'prop-types';
 
+import { ESC_KEY_CODE } from './constants';
 import styles from './styles.module.scss';
 
 function SideModal({ onClose, children }) {
   const handleKeyDown = useCallback(
     (e) => {
-      if (e.which === 27) onClose(null);
+      if (e.which === ESC_KEY_CODE) onClose(null);
     },
     [onClose]
   );
