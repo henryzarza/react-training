@@ -1,53 +1,59 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState } from 'react';
 import { useQuery } from '@apollo/client';
 
 import Loading from '@components/Loading';
+import SideModal from '@components/SideModal';
 import Header from './components/Header';
 import Map from './components/Map';
 import CardScreen from './components/CardScreen';
+import SideContent from './components/SideContent';
 import styles from './styles.module.scss';
 import { VIEW_CONTENT_TYPE, COUNTRIES_QUERY } from './constants';
 
 function Home() {
-  const { loading, data } = useQuery(COUNTRIES_QUERY);
   const [viewType, setViewType] = useState(VIEW_CONTENT_TYPE[0].id);
   const [mapData, setMapData] = useState();
-
-  useEffect(() => {
-    if (data) {
-      const filteredData = data.Country.map((el) => ({
-        id: el.alpha2Code,
-        name: el.name,
-        nativeName: el.nativeName,
-        externalId: el._id,
-        emoji: el.flag.emoji,
-      }));
-      setMapData(filteredData);
-    }
-  }, [data]);
-
-  const handleSelectedCountry = useCallback((id) => {
-    console.log(`%c ID: ${id}`, 'color: #00f'); // TODO connect this when the backend
-  }, []);
+  const [cardData, setCardData] = useState();
+  const [idSelected, setIdSelected] = useState();
+  const { loading } = useQuery(COUNTRIES_QUERY, {
+    onCompleted: (data) => {
+      if (data) {
+        const filteredData = data.Country.map((el) => ({
+          id: el.alpha2Code,
+          name: el.name,
+          nativeName: el.nativeName,
+          externalId: el._id,
+          emoji: el.flag.emoji,
+        }));
+        setMapData(filteredData);
+        setCardData(data.Country);
+      }
+    },
+  });
 
   return loading ? (
     <Loading isSmall />
   ) : (
     <section className={styles.container}>
       <Header value={viewType} onChange={setViewType} />
-      {data && (
+      {cardData && (
         <CardScreen
           className={viewType === VIEW_CONTENT_TYPE[1].id && styles.hide}
-          data={data.Country}
-          onSelected={handleSelectedCountry}
+          data={cardData}
+          onSelected={setIdSelected}
         />
       )}
       {mapData && (
         <Map
           data={mapData}
           className={viewType === VIEW_CONTENT_TYPE[0].id && styles.hide}
-          onSelected={handleSelectedCountry}
+          onSelected={setIdSelected}
         />
+      )}
+      {idSelected && (
+        <SideModal onClose={setIdSelected} isVisible>
+          <SideContent id={idSelected} />
+        </SideModal>
       )}
     </section>
   );

@@ -1,0 +1,54 @@
+@import 'src/scss/variables';
+
+.content {
+  animation: fadeInRight $transition-duration $transition-function backwards;
+  background-color: var(--card-bg-color);
+  bottom: 0;
+  max-width: 100%;
+  padding: 2rem;
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 25rem;
+  z-index: 3;
+}
+
+.backdrop {
+  backdrop-filter: blur(4px);
+  background-color: var(--shadow-btn);
+  bottom: 0;
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 2;
+}
+
+.close-btn {
+  align-items: center;
+  background-color: var(--card-bg-color);
+  display: flex;
+  height: 2.5rem;
+  justify-content: center;
+  left: -4rem;
+  position: absolute;
+  top: 1.5rem;
+  width: 2.5rem;
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@media only screen and (max-width: $break-point) {
+  .close-btn {
+    left: 0;
+  }
+}
