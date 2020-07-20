@@ -9,16 +9,15 @@
   width: $content-width;
 }
 
-.currency-container {
+.currency-container,
+.language-container {
   display: grid;
   grid-gap: 2.5rem 1.5rem;
   grid-template-columns: repeat(4, 1fr);
 }
 
 .language-container {
-  display: grid;
   grid-gap: 1.5rem;
-  grid-template-columns: repeat(4, 1fr);
 }
 
 @media only screen and (max-width: $break-point) {
