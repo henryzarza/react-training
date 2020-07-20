@@ -11,6 +11,8 @@ export const VIEW_CONTENT_TYPE = [
   },
 ];
 
+export const ENTER_KEY_CODE = 13;
+
 export const COUNTRIES_QUERY = gql`
   query {
     Country(orderBy: name_asc) {

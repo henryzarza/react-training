@@ -1,12 +1,18 @@
-import React from 'react';
-import { shape, string, number, arrayOf } from 'prop-types';
+import React, { useCallback } from 'react';
+import { func } from 'prop-types';
 
 import { currencyFormat } from '@constants/utils';
+import { countryPropType } from '../../propTypes';
 import styles from './styles.module.scss';
 
-function Card({ data }) {
+function Card({ data, onSelected }) {
+  const handleClick = useCallback(() => onSelected(data._id), [
+    data._id,
+    onSelected,
+  ]);
+
   return (
-    <li className={styles.container}>
+    <li className={styles.container} onClick={handleClick}>
       <div className={`m-bottom-3 ${styles.imgContainer}`}>
         <img className={styles.img} src={data.flag.svgFile} alt={data.name} />
       </div>
@@ -53,25 +59,8 @@ function Card({ data }) {
 }
 
 Card.propTypes = {
-  data: shape({
-    _id: string,
-    name: string,
-    nativeName: string,
-    alpha3Code: string,
-    capital: string,
-    population: number,
-    numericCode: string,
-    currencies: arrayOf(
-      shape({
-        name: string,
-        symbol: string,
-      })
-    ),
-    flag: shape({
-      svgFile: string,
-      emoji: string,
-    }),
-  }).isRequired,
+  data: countryPropType.isRequired,
+  onSelected: func.isRequired,
 };
 
 export default Card;

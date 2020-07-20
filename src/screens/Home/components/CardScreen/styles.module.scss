@@ -1,0 +1,13 @@
+@import 'src/scss/variables';
+
+.card-content {
+  display: grid;
+  grid-gap: 1rem;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+@media only screen and (max-width: $break-point) {
+  .card-content {
+    grid-template-columns: 1fr;
+  }
+}
