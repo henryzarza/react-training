@@ -3,11 +3,9 @@
 %border {
   background: var(--currency-color-1);
   border: {
-    bottom-color: var(--currency-color-2);
-    left-color: var(--currency-color-3);
-    right-color: var(--currency-color-2);
+    color: var(--currency-color-3) var(--currency-color-2)
+    var(--currency-color-2) var(--currency-color-3);
     style: solid;
-    top-color: var(--currency-color-3);
     width: 0.3rem;
   };
   border-radius: 50%;
@@ -49,12 +47,8 @@
   &::after {
     @extend %border;
 
-    border: {
-      bottom-color: var(--currency-color-3);
-      left-color: var(--currency-color-2);
-      right-color: var(--currency-color-3);
-      top-color: var(--currency-color-2);
-    }
+    border-color: var(--currency-color-2) var(--currency-color-3)
+    var(--currency-color-3) var(--currency-color-2);
   }
 }
 
