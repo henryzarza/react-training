@@ -28,6 +28,7 @@ function Coin({ data }) {
           </h3>
           <button
             type='button'
+            aria-label='close'
             className={`base-text ${styles.closeBtn}`}
             onClick={handleCloseContent}
           >
