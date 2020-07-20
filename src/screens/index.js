@@ -8,6 +8,7 @@ import Navbar from '@components/Navbar';
 
 const Home = lazy(() => import('./Home'));
 const TimeZones = lazy(() => import('./TimeZones'));
+const Interesting = lazy(() => import('./Interesting'));
 const NotFound = lazy(() => import('./NotFound'));
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
         <Router>
           <ProtectedRoute path={ROUTES.HOME} component={Home} />
           <ProtectedRoute path={ROUTES.TIME_ZONES} component={TimeZones} />
+          <ProtectedRoute path={ROUTES.INTERESTING} component={Interesting} />
           <NotFound default />
         </Router>
       </Suspense>
