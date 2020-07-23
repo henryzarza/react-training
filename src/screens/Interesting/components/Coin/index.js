@@ -3,6 +3,7 @@ import { string, shape, arrayOf } from 'prop-types';
 import clsx from 'clsx';
 import i18next from 'i18next';
 
+import { renderText } from '@constants/utils';
 import styles from './styles.module.scss';
 
 function Coin({ data }) {
@@ -15,16 +16,20 @@ function Coin({ data }) {
   return (
     <div className={styles.wrapper}>
       <div className={styles.coin} onClick={handleOpenContent}>
-        <h5 className={`big-text fw-bold ${styles.code}`}>{data.code}</h5>
-        <h3 className={`title ${styles.symbol}`}>{data.symbol}</h3>
-        <h6 className={`small-text fw-bold ${styles.name}`}>{data.name}</h6>
+        <h5 className={`big-text fw-bold ${styles.code}`}>
+          {renderText(data.code)}
+        </h5>
+        <h3 className={`title ${styles.symbol}`}>{renderText(data.symbol)}</h3>
+        <h6 className={`small-text fw-bold ${styles.name}`}>
+          {renderText(data.name)}
+        </h6>
       </div>
       <div
         className={clsx(styles.content, { [styles.visible]: isContentVisible })}
       >
         <div className={styles.header}>
           <h3 className='big-text fw-bold m-right-1'>
-            {data.name} ({data.symbol})
+            {renderText(data.name)} ({renderText(data.symbol)})
           </h3>
           <button
             type='button'

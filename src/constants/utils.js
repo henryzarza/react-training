@@ -3,6 +3,8 @@ import { useEffect, useState, useRef } from 'react';
 export const currencyFormat = (num) =>
   num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
 
+export const renderText = (value) => (value === 'null' ? 'N/A' : value);
+
 /* Adapted from https://wattenberger.com/blog/react-hooks */
 export const useIsInView = (margin = '0px') => {
   const [isIntersecting, setIntersecting] = useState(false);
