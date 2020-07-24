@@ -1,3 +1,5 @@
+import { gql } from '@apollo/client';
+
 export const TABS_CONFIG = [
   {
     id: 'currencies',
@@ -16,85 +18,41 @@ export const TABS_CONFIG = [
   },
 ];
 
-export const MOCK_LANGUAGES_DATA = [
-  {
-    _id: '22',
-    iso639_2: 'pus',
-    name: 'Pashto',
-    nativeName: 'پښتو',
-    countries: [
-      {
-        name: 'Afghanistan',
-        flag: {
-          emoji: '🇦🇫',
-        },
-      },
-    ],
-  },
-  {
-    _id: '23',
-    iso639_2: 'uzb',
-    name: 'Uzbek',
-    nativeName: 'Oʻzbek',
-    countries: [
-      {
-        name: 'Uzbekistan',
-        flag: {
-          emoji: '🇺🇿',
-        },
-      },
-      {
-        name: 'Afghanistan',
-        flag: {
-          emoji: '🇦🇫',
-        },
-      },
-    ],
-  },
-  {
-    _id: '24',
-    iso639_2: 'tuk',
-    name: 'Turkmen',
-    nativeName: 'Türkmen',
-    countries: [
-      {
-        name: 'Turkmenistan',
-        flag: {
-          emoji: '🇹🇲',
-        },
-      },
-      {
-        name: 'Afghanistan',
-        flag: {
-          emoji: '🇦🇫',
-        },
-      },
-    ],
-  },
-  {
-    _id: '48',
-    iso639_2: 'swe',
-    name: 'Swedish',
-    nativeName: 'svenska',
-    countries: [
-      {
-        name: 'Sweden',
-        flag: {
-          emoji: '🇸🇪',
-        },
-      },
-      {
-        name: 'Finland',
-        flag: {
-          emoji: '🇫🇮',
-        },
-      },
-      {
-        name: 'Åland Islands',
-        flag: {
-          emoji: '🇦🇽',
-        },
-      },
-    ],
-  },
-];
+export const CURRENCY_REGISTERS_PER_PAGE = 30;
+
+export const QUERY_CURRENCY = gql`
+  query Currency($first: Int, $offset: Int) {
+    Currency(offset: $offset, first: $first, orderBy: name_asc) {
+      _id
+      name
+      code
+      symbol
+      countries(orderBy: name_asc) {
+        name
+        flag {
+          emoji
+        }
+      }
+    }
+  }
+`;
+
+export const LNG_REGISTERS_PER_PAGE = 20;
+
+export const LNG_QUERY = gql`
+  query Language($first: Int, $offset: Int) {
+    Language(first: $first, offset: $offset, orderBy: name_asc) {
+      _id
+      iso639_2
+      name
+      nativeName
+      countries(orderBy: name_asc) {
+        _id
+        name
+        flag {
+          emoji
+        }
+      }
+    }
+  }
+`;
