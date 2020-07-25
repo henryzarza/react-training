@@ -1,58 +1,44 @@
-import React, { useEffect } from 'react';
-import i18next from 'i18next';
-import { create, color } from '@amcharts/amcharts4/core';
-import {
-  MapChart,
-  projections,
-  MapPolygonSeries,
-} from '@amcharts/amcharts4/maps';
-import worldTimeZoneAreasHigh from '@amcharts/amcharts4-geodata/worldTimeZoneAreasHigh';
+import React, { useState } from 'react';
+import { color } from '@amcharts/amcharts4/core';
+import { useQuery } from '@apollo/client';
 
+import SideModal from '@components/SideModal';
+import Loading from '@components/Loading';
+import Map from './components/Map';
 import { THEME_COLORS } from '@constants/colors';
-import { MOCK_DATA } from './constants';
-import styles from './styles.module.scss';
+import { generateRandom } from '@constants/utils';
+import SideContent from './components/SideContent';
+import { QUERY } from './constants';
 
 function TimeZones() {
-  useEffect(() => {
-    let map = create('mapRef', MapChart);
-    map.geodata = worldTimeZoneAreasHigh;
-    map.projection = new projections.Miller();
-    let polygonSeries = map.series.push(new MapPolygonSeries());
-    polygonSeries.useGeodata = true;
-    polygonSeries.exclude = ['AQ'];
-    let polygonTemplate = polygonSeries.mapPolygons.template;
-    polygonTemplate.tooltipText = '{TIMEZONE}';
-    polygonTemplate.strokeWidth = 1;
-    let hs = polygonTemplate.states.create('hover');
-    hs.properties.fill = color(THEME_COLORS.DEFAULT.secondary);
-    polygonTemplate.fill = color(THEME_COLORS.DEFAULT.primary);
-    const data = MOCK_DATA.map((el, index) => ({
-      id: el.name,
-      externalId: el._id,
-      fill: color(THEME_COLORS.DEFAULT.TIME_ZONE[index]),
-    }));
-    polygonSeries.data = data;
-    polygonTemplate.propertyFields.fill = 'fill';
+  const [data, setData] = useState();
+  const [idSelected, setIdSelected] = useState();
+  const { loading } = useQuery(QUERY, {
+    onCompleted: (data) => {
+      const dataParsed = data.Timezone.map((el) => ({
+        id: el.name,
+        externalId: el._id,
+        fill: color(
+          THEME_COLORS.DEFAULT.TIME_ZONE[
+            generateRandom(THEME_COLORS.DEFAULT.TIME_ZONE.length - 1)
+          ]
+        ),
+      }));
+      setData(dataParsed);
+    },
+  });
 
-    polygonTemplate.events.on('hit', function (e) {
-      e.target.series.chart.zoomToMapObject(e.target);
-      console.log(e.target.dataItem.dataContext);
-    });
-
-    return () => {
-      if (map) {
-        map.dispose();
-      }
-    };
-  }, []);
-
-  return (
-    <section className={styles.container}>
-      <h2 className='small-title m-bottom-6'>
-        {i18next.t('TIME_ZONES:TITLE')}
-      </h2>
-      <div className={styles.mapContainer} id='mapRef' />
-    </section>
+  return loading || !data ? (
+    <Loading isSmall />
+  ) : (
+    <>
+      <Map data={data} onSelected={setIdSelected} />
+      {idSelected && (
+        <SideModal onClose={setIdSelected} isVisible>
+          <SideContent id={idSelected} />
+        </SideModal>
+      )}
+    </>
   );
 }
 
