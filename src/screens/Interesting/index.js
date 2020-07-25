@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import clsx from 'clsx';
 
 import Tabs from './components/Tabs';
 import RenderContent from './components/RenderContent';
@@ -20,24 +19,24 @@ function Interesting() {
   return (
     <section className={styles.container}>
       <Tabs value={viewType} onSelected={setViewType} />
-      <RenderContent
-        target='Currency'
-        query={QUERY_CURRENCY}
-        registersPerPage={CURRENCY_REGISTERS_PER_PAGE}
-        component={Coin}
-        containerClassName={clsx(styles.currencyContainer, {
-          [styles.hide]: viewType === TABS_CONFIG[1].id,
-        })}
-      />
-      <RenderContent
-        target='Language'
-        query={LNG_QUERY}
-        registersPerPage={LNG_REGISTERS_PER_PAGE}
-        component={Language}
-        containerClassName={clsx(styles.languageContainer, {
-          [styles.hide]: viewType === TABS_CONFIG[0].id,
-        })}
-      />
+      {viewType === TABS_CONFIG[0].id && (
+        <RenderContent
+          target='Currency'
+          query={QUERY_CURRENCY}
+          registersPerPage={CURRENCY_REGISTERS_PER_PAGE}
+          component={Coin}
+          containerClassName={styles.currencyContainer}
+        />
+      )}
+      {viewType === TABS_CONFIG[1].id && (
+        <RenderContent
+          target='Language'
+          query={LNG_QUERY}
+          registersPerPage={LNG_REGISTERS_PER_PAGE}
+          component={Language}
+          containerClassName={styles.languageContainer}
+        />
+      )}
     </section>
   );
 }

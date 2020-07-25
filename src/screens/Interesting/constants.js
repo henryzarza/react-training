@@ -21,8 +21,8 @@ export const TABS_CONFIG = [
 export const CURRENCY_REGISTERS_PER_PAGE = 30;
 
 export const QUERY_CURRENCY = gql`
-  query Currency($first: Int, $offset: Int) {
-    Currency(offset: $offset, first: $first, orderBy: name_asc) {
+  query {
+    Currency(orderBy: name_asc) {
       _id
       name
       code
@@ -40,8 +40,8 @@ export const QUERY_CURRENCY = gql`
 export const LNG_REGISTERS_PER_PAGE = 20;
 
 export const LNG_QUERY = gql`
-  query Language($first: Int, $offset: Int) {
-    Language(first: $first, offset: $offset, orderBy: name_asc) {
+  query {
+    Language(orderBy: name_asc) {
       _id
       iso639_2
       name
