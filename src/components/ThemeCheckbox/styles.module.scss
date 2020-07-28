@@ -4,24 +4,29 @@
   display: none;
 
   &:checked + .label {
-    background-color: rgb(61, 65, 69);
-    background-image: radial-gradient(white 15%, transparent 16%),
-    radial-gradient(white 15%, transparent 16%);
+    background: radial-gradient($white 15%, transparent 16%),
+    radial-gradient($white 15%, transparent 16%);
+    background-color: $gray-1;
     background-position: 0 0, 1.5rem 1.5rem;
     background-size: 2.5rem 2.5rem;
-    border-color: rgb(30, 30, 29);
+    border-color: $gray-2;
 
     &::after {
-      background-color: rgb(255, 255, 255);
-      border-color: rgb(228, 230, 202);
+      background-color: $white;
+      border-color: $porcelan;
       transform: translateX(1.8rem);
     }
   }
 }
 
 .label {
-  background-color: rgb(173, 225, 248);
-  border: 0.1rem solid rgb(147, 194, 213);
+  background: linear-gradient($white 50%, transparent 0) 0 0,
+  radial-gradient(circle closest-side, $white 53%, transparent 0) 0 0,
+  radial-gradient(circle closest-side, $white 50%, transparent 0) 3.5rem 0
+  $light-blue-1;
+  background-repeat: repeat-x;
+  background-size: 1rem 2rem;
+  border: 0.1rem solid $light-blue-2;
   border-radius: 2rem;
   cursor: pointer;
   height: 2.2rem;
@@ -33,8 +38,8 @@
   z-index: 2;
 
   &::after {
-    background-color: rgb(250, 223, 126);
-    border: 0.05rem solid rgb(220, 195, 94);
+    background-color: $light-yellow-1;
+    border: 0.05rem solid $light-yellow-2;
     border-radius: 50%;
     content: '';
     height: 1.5rem;
