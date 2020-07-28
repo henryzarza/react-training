@@ -1,0 +1,48 @@
+@import 'src/scss/variables';
+
+.input {
+  display: none;
+
+  &:checked + .label {
+    background-color: rgb(61, 65, 69);
+    background-image: radial-gradient(white 15%, transparent 16%),
+    radial-gradient(white 15%, transparent 16%);
+    background-position: 0 0, 1.5rem 1.5rem;
+    background-size: 2.5rem 2.5rem;
+    border-color: rgb(30, 30, 29);
+
+    &::after {
+      background-color: rgb(255, 255, 255);
+      border-color: rgb(228, 230, 202);
+      transform: translateX(1.8rem);
+    }
+  }
+}
+
+.label {
+  background-color: rgb(173, 225, 248);
+  border: 0.1rem solid rgb(147, 194, 213);
+  border-radius: 2rem;
+  cursor: pointer;
+  height: 2.2rem;
+  position: fixed;
+  right: 1rem;
+  top: 1rem;
+  transition: all $transition-duration $transition-function;
+  width: 4rem;
+  z-index: 2;
+
+  &::after {
+    background-color: rgb(250, 223, 126);
+    border: 0.05rem solid rgb(220, 195, 94);
+    border-radius: 50%;
+    content: '';
+    height: 1.5rem;
+    left: 0.2rem;
+    position: absolute;
+    top: 0.2rem;
+    transform: translateX(0);
+    transition: all $transition-duration $transition-function;
+    width: 1.5rem;
+  }
+}

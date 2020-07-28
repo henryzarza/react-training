@@ -5,6 +5,7 @@ import { ROUTES, IS_AUTH } from '@constants/routes';
 import Loading from '@components/Loading';
 import ProtectedRoute, { AuthContext } from '@components/ProtectedRoute';
 import Navbar from '@components/Navbar';
+import ThemeCheckbox from '@components/ThemeCheckbox';
 
 const Home = lazy(() => import('./Home'));
 const TimeZones = lazy(() => import('./TimeZones'));
@@ -26,6 +27,7 @@ function App() {
   return (
     <AuthContext.Provider value={{ isAuth, handleSetIsAuth }}>
       <Suspense fallback={<Loading />}>
+        <ThemeCheckbox />
         {isAuth && <Navbar />}
         <Router>
           <ProtectedRoute path={ROUTES.HOME} component={Home} />
