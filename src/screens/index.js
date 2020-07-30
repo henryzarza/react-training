@@ -5,7 +5,7 @@ import { ROUTES, IS_AUTH } from '@constants/routes';
 import Loading from '@components/Loading';
 import ProtectedRoute, { AuthContext } from '@components/ProtectedRoute';
 import Navbar from '@components/Navbar';
-import ThemeCheckbox from '@components/ThemeCheckbox';
+import ThemeCheckbox, { ThemeContext } from 'components/ThemeCheckbox';
 
 const Home = lazy(() => import('./Home'));
 const TimeZones = lazy(() => import('./TimeZones'));
@@ -14,6 +14,7 @@ const NotFound = lazy(() => import('./NotFound'));
 
 function App() {
   const [isAuth, setIsAuth] = useState(!!localStorage.getItem(IS_AUTH));
+  const [theme, setTheme] = useState();
 
   const handleSetIsAuth = useCallback(
     (value) => {
@@ -27,14 +28,16 @@ function App() {
   return (
     <AuthContext.Provider value={{ isAuth, handleSetIsAuth }}>
       <Suspense fallback={<Loading />}>
-        <ThemeCheckbox />
-        {isAuth && <Navbar />}
-        <Router>
-          <ProtectedRoute path={ROUTES.HOME} component={Home} />
-          <ProtectedRoute path={ROUTES.TIME_ZONES} component={TimeZones} />
-          <ProtectedRoute path={ROUTES.INTERESTING} component={Interesting} />
-          <NotFound default />
-        </Router>
+        <ThemeContext.Provider value={{ theme, setTheme }}>
+          <ThemeCheckbox />
+          {isAuth && <Navbar />}
+          <Router>
+            <ProtectedRoute path={ROUTES.HOME} component={Home} />
+            <ProtectedRoute path={ROUTES.TIME_ZONES} component={TimeZones} />
+            <ProtectedRoute path={ROUTES.INTERESTING} component={Interesting} />
+            <NotFound default />
+          </Router>
+        </ThemeContext.Provider>
       </Suspense>
     </AuthContext.Provider>
   );
