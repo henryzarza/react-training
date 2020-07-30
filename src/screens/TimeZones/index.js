@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { color } from '@amcharts/amcharts4/core';
 import { useQuery } from '@apollo/client';
 
@@ -29,6 +29,21 @@ function TimeZones() {
       setData(dataParsed);
     },
   });
+
+  useEffect(() => {
+    if (data) {
+      const dataParsed = data.map((el) => ({
+        ...el,
+        fill: color(
+          THEME_COLORS[theme].TIME_ZONE[
+            generateRandom(THEME_COLORS[theme].TIME_ZONE.length - 1)
+          ]
+        ),
+      }));
+      setData(dataParsed);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [theme]);
 
   return loading || !data ? (
     <Loading isSmall />
