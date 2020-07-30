@@ -1,19 +1,38 @@
 :root {
-  --text-color: #282c34;
-  --background-color: #f7f6f4;
+  --background-color: #F7F6F4;
+  --btn-primary-color: #FFF;
+  --card-bg-color: #FFF;
+  --currency-color-1: #F0A608;
+  --currency-color-2: #FFD84C;
+  --currency-color-3: #D57E08;
+  --currency-color-4: #FFBD0B;
+  --error-color: #ED4337;
+  --input-bg-color: #E7E4DF;
   --loader-bg: rgba(0, 0, 0, 0.15);
-  --loader-bg-stripes: rgba(0, 0, 0, 0.7);
   --loader-bg-radar: rgba(0, 0, 0, 0.6);
+  --loader-bg-stripes: rgba(0, 0, 0, 0.7);
+  --navbar-text-color: #FFF;
+  --primary-color: #354F3C;
+  --secondary-color: #AB222A;
   --shadow-btn: rgba(0, 0, 0, 0.3);
-  --primary-color: #354f3c;
-  --btn-primary-color: #fff;
-  --input-bg-color: #e7e4df;
-  --error-color: #ed4337;
-  --secondary-color: #ab222a;
-  --navbar-text-color: #fff;
-  --card-bg-color: #fff;
-  --currency-color-1: #f0a608;
-  --currency-color-2: #ffd84c;
-  --currency-color-3: #d57e08;
-  --currency-color-4: #ffbd0b;
+  --text-color: #282C34;
+}
+
+[data-theme='dark'] {
+  --background-color: #282C34;
+  --btn-primary-color: #242C2F;
+  --card-bg-color: #161618;
+  --currency-color-1: #D3D3D3;
+  --currency-color-2: #CBCACE;
+  --currency-color-3: #949497;
+  --currency-color-4: #F0F0F1;
+  --error-color: #F10D0D;
+  --input-bg-color: #17151C;
+  --loader-bg: rgba(255, 255, 255, 0.25);
+  --loader-bg-radar: rgba(255, 255, 255, 0.6);
+  --loader-bg-stripes: rgba(255, 255, 255, 0.7);
+  --navbar-text-color: #17151C;
+  --primary-color: #F5F5F5;
+  --secondary-color: #999;
+  --text-color: #FCFCFC;
 }
