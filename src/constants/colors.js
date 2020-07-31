@@ -1,3 +1,8 @@
+export const THEMES = {
+  default: 'DEFAULT',
+  dark: 'DARK',
+};
+
 export const THEME_COLORS = {
   DEFAULT: {
     primary: '#354f3c',
@@ -21,6 +26,30 @@ export const THEME_COLORS = {
       '#FF5722',
       '#795548',
       '#9E9E9E',
+    ],
+  },
+  DARK: {
+    secondary: '#F5F5F5',
+    primary: '#999',
+    TIME_ZONE: [
+      '#232931',
+      '#393e46',
+      '#363333',
+      '#070739',
+      '#1b1f3a',
+      '#4b5d67',
+      '#30475e',
+      '#1f4068',
+      '#1b262c',
+      '#222831',
+      '#393e46',
+      '#3a4750',
+      '#26282b',
+      '#2A353E',
+      '#061B2F',
+      '#0D1A22',
+      '#131B1E',
+      '#0C0F14',
     ],
   },
 };

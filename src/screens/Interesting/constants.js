@@ -11,11 +11,6 @@ export const TABS_CONFIG = [
     iconClass: 'icofont-globe-alt',
     text: 'INTERESTING:TAB_LANGUAGES',
   },
-  {
-    id: 'distance',
-    iconClass: 'icofont-map-pins',
-    text: 'INTERESTING:TAB_DISTANCE',
-  },
 ];
 
 export const CURRENCY_REGISTERS_PER_PAGE = 30;

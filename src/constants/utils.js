@@ -8,6 +8,34 @@ export const renderText = (value) => (value === 'null' ? 'N/A' : value);
 export const generateRandom = (end, start = 0) =>
   Math.floor(Math.random() * end + start);
 
+export const useDarkMode = () => {
+  const [isDark, setIsDark] = useState(
+    localStorage.getItem('theme') === 'dark'
+  );
+
+  useEffect(() => {
+    if (isDark) {
+      localStorage.setItem('theme', 'dark');
+      document.documentElement.setAttribute('data-theme', 'dark');
+    } else {
+      localStorage.removeItem('theme');
+      document.documentElement.removeAttribute('data-theme');
+    }
+  }, [isDark]);
+
+  useEffect(() => {
+    const matcher = window.matchMedia('(prefers-color-scheme: dark)');
+    const onChange = ({ matches }) => setIsDark(matches);
+    matcher.addListener(onChange);
+
+    return () => {
+      matcher.addListener(onChange);
+    };
+  }, [setIsDark]);
+
+  return [isDark, setIsDark];
+};
+
 /* Adapted from https://wattenberger.com/blog/react-hooks */
 export const useIsInView = (margin = '0px') => {
   const [isIntersecting, setIntersecting] = useState(false);

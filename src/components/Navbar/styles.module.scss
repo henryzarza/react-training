@@ -17,7 +17,7 @@
   position: relative;
 
   & > * {
-    color: var(--navbar-text-color);
+    color: $white;
     z-index: 1;
   }
 
@@ -78,6 +78,14 @@
     background-color: var(--secondary-color);
     color: var(--navbar-text-color);
     transform: scale(0.98);
+  }
+}
+
+[data-theme='dark'] .content {
+  background-image: url('../../assets/navbar-dark.jpeg');
+
+  &::before {
+    background-color: rgba(0, 0, 0, 0.5);
   }
 }
 

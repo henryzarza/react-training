@@ -12,7 +12,7 @@ import worldTimeZoneAreasHigh from '@amcharts/amcharts4-geodata/worldTimeZoneAre
 import { THEME_COLORS } from '@constants/colors';
 import styles from './styles.module.scss';
 
-function Map({ data, onSelected }) {
+function Map({ data, onSelected, theme }) {
   useEffect(() => {
     let map = create('mapRef', MapChart);
     map.geodata = worldTimeZoneAreasHigh;
@@ -23,9 +23,9 @@ function Map({ data, onSelected }) {
     let polygonTemplate = polygonSeries.mapPolygons.template;
     polygonTemplate.tooltipText = '{TIMEZONE}';
     polygonTemplate.strokeWidth = 1;
+    polygonTemplate.fill = color(THEME_COLORS[theme].primary);
     let hs = polygonTemplate.states.create('hover');
-    hs.properties.fill = color(THEME_COLORS.DEFAULT.secondary);
-    polygonTemplate.fill = color(THEME_COLORS.DEFAULT.primary);
+    hs.properties.fill = color(THEME_COLORS[theme].secondary);
     polygonSeries.data = data;
     polygonTemplate.propertyFields.fill = 'fill';
 
@@ -38,6 +38,7 @@ function Map({ data, onSelected }) {
         map.dispose();
       }
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data, onSelected]);
 
   return (
@@ -58,6 +59,7 @@ Map.propTypes = {
     })
   ).isRequired,
   onSelected: func.isRequired,
+  theme: string.isRequired,
 };
 
 export default Map;
