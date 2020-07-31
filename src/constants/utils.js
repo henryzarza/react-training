@@ -5,7 +5,7 @@ export const currencyFormat = (num) =>
 
 export const renderText = (value) => (value === 'null' ? 'N/A' : value);
 
-export const generateRandom = (end, start = 1) =>
+export const generateRandom = (end, start = 0) =>
   Math.floor(Math.random() * end + start);
 
 export const useDarkMode = () => {
