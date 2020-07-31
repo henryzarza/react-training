@@ -1,14 +1,27 @@
-export const MOCK_DATA = [
-  {
-    _id: '1471',
-    name: 'UTC+00:00',
-  },
-  {
-    _id: '58',
-    name: 'UTC+01:00',
-  },
-  {
-    _id: '58',
-    name: 'UTC+02:00',
-  },
-];
+import { gql } from '@apollo/client';
+
+export const QUERY = gql`
+  query {
+    Timezone {
+      _id
+      name
+    }
+  }
+`;
+
+export const QUERY_SINGLE = gql`
+  query Timezone($id: String!) {
+    Timezone(_id: $id) {
+      name
+      countries(orderBy: name_asc) {
+        _id
+        name
+        nativeName
+        alpha3Code
+        flag {
+          emoji
+        }
+      }
+    }
+  }
+`;
