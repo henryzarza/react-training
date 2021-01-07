@@ -11,7 +11,7 @@ function RenderContent({
   component: Cmp,
   containerClassName,
 }) {
-  const { loading, data } = useRequest(target, query);
+  const { isLoading, data } = useRequest(target, query);
   const [refCard, isIntersecting] = useIsInView('300px');
   const [endIndex, setEndIndex] = useState(0);
   const [startIndex, setStartIndex] = useState(0);
@@ -35,7 +35,7 @@ function RenderContent({
 
   return (
     <>
-      {loading || !data ? (
+      {isLoading || !data ? (
         <Loading isSmall />
       ) : (
         <div className={containerClassName}>

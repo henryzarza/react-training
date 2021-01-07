@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { useQuery } from '@apollo/client';
+import React, { useState, useEffect } from 'react';
 
+import { useRequest } from '@constants/utils';
 import Loading from '@components/Loading';
 import SideModal from '@components/SideModal';
 import Header from './components/Header';
@@ -15,23 +15,24 @@ function Home() {
   const [mapData, setMapData] = useState();
   const [cardData, setCardData] = useState();
   const [idSelected, setIdSelected] = useState();
-  const { loading } = useQuery(COUNTRIES_QUERY, {
-    onCompleted: (data) => {
-      if (data) {
-        const filteredData = data.Country.map((el) => ({
-          id: el.alpha2Code,
-          name: el.name,
-          nativeName: el.nativeName,
-          externalId: el._id,
-          emoji: el.flag.emoji,
-        }));
-        setMapData(filteredData);
-        setCardData(data.Country);
-      }
-    },
-  });
 
-  return loading ? (
+  const { isLoading, data } = useRequest('countries', COUNTRIES_QUERY);
+
+  useEffect(() => {
+    if (data) {
+      const filteredData = data.Country.map((el) => ({
+        id: el.alpha2Code,
+        name: el.name,
+        nativeName: el.nativeName,
+        externalId: el._id,
+        emoji: el.flag.emoji,
+      }));
+      setMapData(filteredData);
+      setCardData(data.Country);
+    }
+  }, [data]);
+
+  return isLoading ? (
     <Loading isSmall />
   ) : (
     <section className={styles.container}>

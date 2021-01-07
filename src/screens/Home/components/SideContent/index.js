@@ -1,22 +1,18 @@
-import React, { useState } from 'react';
-import { useQuery } from '@apollo/client';
+import React from 'react';
 import { string } from 'prop-types';
 import i18next from 'i18next';
 
 import Loading from '@components/Loading';
-import { currencyFormat } from '@constants/utils';
+import { currencyFormat, useRequest } from '@constants/utils';
 import { COUNTRY_QUERY } from '../../constants';
 import ItemGroup from './components/ItemGroup';
 import styles from './styles.module.scss';
 
 function SideContent({ id }) {
-  const { loading } = useQuery(COUNTRY_QUERY, {
-    variables: { id },
-    onCompleted: (data) => setCountry(data.Country[0]),
-  });
-  const [country, setCountry] = useState();
+  const { isLoading, data } = useRequest(['country', id], COUNTRY_QUERY, null, { id });
+  const country = data?.Country[0];
 
-  return loading || !country ? (
+  return isLoading || !country ? (
     <Loading isSmall />
   ) : (
     <div className={styles.content}>
