@@ -1,4 +1,8 @@
 import { useEffect, useState, useRef } from 'react';
+import { useQuery } from 'react-query';
+import { request } from 'graphql-request';
+
+const BASE_URL = 'https://countries-274616.ew.r.appspot.com';
 
 export const currencyFormat = (num) =>
   num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
@@ -58,3 +62,7 @@ export const useIsInView = (margin = '0px') => {
 
   return [ref, isIntersecting];
 };
+
+export const useRequest = (key, query, config, variables) => {
+  return useQuery(key, async () => await request(BASE_URL, query, variables), config);
+}

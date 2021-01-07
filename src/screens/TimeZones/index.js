@@ -1,11 +1,10 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { color } from '@amcharts/amcharts4/core';
-import { useQuery } from '@apollo/client';
 
 import SideModal from '@components/SideModal';
 import Loading from '@components/Loading';
 import { THEME_COLORS } from '@constants/colors';
-import { generateRandom } from '@constants/utils';
+import { generateRandom, useRequest } from '@constants/utils';
 import { ThemeContext } from '@components/ThemeCheckbox';
 import SideContent from './components/SideContent';
 import Map from './components/Map';
@@ -15,9 +14,11 @@ function TimeZones() {
   const { theme } = useContext(ThemeContext);
   const [data, setData] = useState();
   const [idSelected, setIdSelected] = useState();
-  const { loading } = useQuery(QUERY, {
-    onCompleted: (data) => {
-      const dataParsed = data.Timezone.map((el) => ({
+
+  const { isLoading } = useRequest('timezones', QUERY, {
+    refetchOnWindowFocus: false,
+    onSuccess: response => {
+      const dataParsed = response.Timezone.map((el) => ({
         id: el.name,
         externalId: el._id,
         fill: color(
@@ -27,7 +28,7 @@ function TimeZones() {
         ),
       }));
       setData(dataParsed);
-    },
+    }
   });
 
   useEffect(() => {
@@ -45,7 +46,7 @@ function TimeZones() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [theme]);
 
-  return loading || !data ? (
+  return isLoading || !data ? (
     <Loading isSmall />
   ) : (
     <>
