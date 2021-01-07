@@ -1,10 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { ApolloProvider } from '@apollo/client';
 import { QueryClientProvider, QueryClient } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
 
-import { client } from './config/apollo-client';
 import './config/i18n';
 import './index.scss';
 import App from './screens';
@@ -14,13 +12,10 @@ const queryClient = new QueryClient();
 
 ReactDOM.render(
   <React.StrictMode>
-    {/* TODO delete this */}
-    <ApolloProvider client={client}>
-      <QueryClientProvider client={queryClient}>
-        <App />
-        <ReactQueryDevtools initialIsOpen={false} />
-      </QueryClientProvider>
-    </ApolloProvider>
+    <QueryClientProvider client={queryClient}>
+      <App />
+      <ReactQueryDevtools initialIsOpen={false} />
+    </QueryClientProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
