@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { useQuery } from '@apollo/client';
-import { string, number, func, shape } from 'prop-types';
+import { string, number, func } from 'prop-types';
 
-import { useIsInView } from '@constants/utils';
+import { useIsInView, useRequest } from '@constants/utils';
 import Loading from '@components/Loading';
 
 function RenderContent({
@@ -12,7 +11,7 @@ function RenderContent({
   component: Cmp,
   containerClassName,
 }) {
-  const { loading, data } = useQuery(query);
+  const { loading, data } = useRequest(target, query);
   const [refCard, isIntersecting] = useIsInView('300px');
   const [endIndex, setEndIndex] = useState(0);
   const [startIndex, setStartIndex] = useState(0);
@@ -55,7 +54,7 @@ RenderContent.propTypes = {
   component: func.isRequired,
   registersPerPage: number.isRequired,
   target: string.isRequired,
-  query: shape().isRequired,
+  query: string.isRequired,
 };
 
 export default RenderContent;
