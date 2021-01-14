@@ -13,9 +13,10 @@ In the project directory, you can run:
 Runs the app in the development mode.<br />
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-### `yarn test`
+### `yarn test` and `yarn coverage-diff`
 
-I'll do it in the future 👀🙇
+If you want to run all the tests you have to check on `testing` branch (see [PR 26](https://github.com/henryzarza/react-training/pull/26)) and run `yarn test` for running the current tests no stacked and run `yarn coverage-diff` if you want to see the coverage and all the tests.
+I did 26 tests and 8 test suites, I have a problem with `am4chart` library with the tests but I left a TODO for doing it later.
 
 ### `yarn build`
 
