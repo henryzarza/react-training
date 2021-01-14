@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Navbar it renders well 1`] = `
+<section
+  class="content"
+  tabindex="-1"
+>
+  <h2
+    class="title m-bottom-3 title"
+  >
+    LOGIN:TITLE
+  </h2>
+  <p
+    class="base-text m-bottom-6 paragraph"
+  >
+    NAVBAR:DESCRIPTION
+  </p>
+  <a
+    class="small-text link m-bottom-2 fw-bold"
+    href="https://github.com/lennertVanSever/graphcountries"
+    rel="nofollow external"
+    target="blank"
+  >
+    NAVBAR:REPOSITORY
+     lennertVanSever/graphcountries
+  </a>
+  <small
+    class="small-text m-bottom-1"
+  >
+    NAVBAR:MADE_TEXT
+    <span
+      aria-label="love"
+      class="m-left-1"
+      role="img"
+    >
+      ♥️
+    </span>
+    NAVBAR:MADE_BY
+  </small>
+</section>
+`;
